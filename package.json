@@ -3,12 +3,12 @@
   "description": "A CSV->JSON transformer for a large CSV file",
   "repository": "https://github.com/andeemarks/node-csv-parsing.git",
   "author": "Andy Marks <vampwillow@gmail.com>",
-  "license": "MIT License",
+  "license": "MIT",
   "version": "0.1.0",
   "devDependencies": {
     "grunt": "~0.4.2"
   },
   "dependencies": {
-    "csv-parse": "^2.0.0"
+    "csvtojson": "^1.1.9"
   }
 }
