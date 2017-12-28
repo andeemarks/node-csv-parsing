@@ -1,7 +1,5 @@
 const csv = require('csvtojson');
 
-const CSVFILEPATH = './csv/Fielding.csv'
-
 var numberOfIngestedRows = 0;
 var contents = [];
 const COLUMN_NAMES = ['player-id', 'year-id', 'stint', 'team-id', 'lg-id', 'pos', 'g', 'gs', 'innouts', 'po', 'a', 'e', 'dp', 'pb', 'wp', 'sb', 'cs', 'pickoffs', 'zr', 'missing-g-c', 'missing-g'];
@@ -12,7 +10,7 @@ function ingest(fileToIngest, columnNames) {
 	console.time('ingest');
 
 	csv({noheader:true, headers: columnNames})
-		.fromFile(CSVFILEPATH)
+		.fromFile(fileToIngest)
 		.on('json',(json) => {
 	  	numberOfIngestedRows = numberOfIngestedRows + 1
 	  	contents.push(json);
@@ -27,5 +25,5 @@ function ingest(fileToIngest, columnNames) {
 }
 
 exports.ingestFieldingStats = function() {
-	return ingest(CSVFILEPATH, COLUMN_NAMES);
+	return ingest('./csv/Fielding.csv', COLUMN_NAMES);
 }
