@@ -15,11 +15,7 @@ var rawStats;
 var statsByPlayerId;
 
 function splitStatsByPlayerId(rawStats) {
-  // console.log(rawStats.length)
   statsByPlayerId = JSON.parse(JSON.stringify(groupArray(rawStats, 'player-id')));
-	// console.log(statsByPlayerId['aardsda01']);
-	// console.log(Object.keys(statsByPlayerId).length);
-	// console.log(Array.isArray(statsByPlayerId['aardsda01']));
 }
 
 server.listen(PORT, HOSTNAME, () => {
