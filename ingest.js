@@ -4,7 +4,7 @@ var numberOfIngestedRows = 0;
 var contents = [];
 const COLUMN_NAMES = ['player-id', 'year-id', 'stint', 'team-id', 'lg-id', 'pos', 'g', 'gs', 'innouts', 'po', 'a', 'e', 'dp', 'pb', 'wp', 'sb', 'cs', 'pickoffs', 'zr', 'missing-g-c', 'missing-g'];
 
-function ingest(fileToIngest, columnNames) {
+function ingest(fileToIngest, columnNames, callback) {
 	console.log("Ingesting " + fileToIngest + "...");
 
 	console.time('ingest');
@@ -16,14 +16,12 @@ function ingest(fileToIngest, columnNames) {
 	  	contents.push(json);
 		})
 		.on('done', (error) => {
-		  console.log(numberOfIngestedRows)
-
 			console.timeEnd('ingest');
-
+			callback(contents);
 		});
 	return contents;
 }
 
-exports.ingestFieldingStats = function() {
-	return ingest('./csv/Fielding.csv', COLUMN_NAMES);
+exports.ingestFieldingStats = function(callback) {
+	return ingest('./csv/Fielding.csv', COLUMN_NAMES, callback);
 }
